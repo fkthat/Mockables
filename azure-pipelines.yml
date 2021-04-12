@@ -48,7 +48,7 @@ steps:
     summaryFileLocation: 'test/**/coverage.cobertura.xml'
 
 - task: Bash@3
-  displayName: Turn pack on/off
+  displayName: Turn pack on
   condition: eq(variables['Build.Reason'], 'IndividualCI')
   inputs:
     targetType: 'inline'
