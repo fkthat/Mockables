@@ -48,15 +48,22 @@ steps:
     summaryFileLocation: 'test/**/coverage.cobertura.xml'
 
 - task: Bash@3
+  displayName: Turn pack on/off
+  condition: eq(variables['Build.Reason'], 'IndividualCI')
+  inputs:
+    targetType: 'inline'
+    script: echo "##vso[task.setvariable variable=Pack]Yes"
+
+- task: Bash@3
   displayName: Set version suffix
-  condition: ne(variables['Build.SourceBranch'], 'master')
+  condition: and(eq(variables.Pack, 'Yes'), ne(variables['Build.SourceBranch'], 'master'))
   inputs:
     targetType: 'inline'
     script: echo "##vso[task.setvariable variable=VersionSuffix]CI-$(Build.BuildNumber)"
 
 - task: DotNetCoreCLI@2
   displayName: Pack
-  condition: eq(variables['Build.Reason'], 'IndividualCI')
+  condition: eq(variables.Pack, 'Yes')
   inputs:
     command: 'custom'
     projects: 'src/**/*.csproj'
@@ -67,7 +74,7 @@ steps:
 
 - task: NuGetCommand@2
   displayName: Push to MyGet
-  condition: eq(variables['Build.Reason'], 'IndividualCI')
+  condition: eq(variables.Pack, 'Yes')
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
