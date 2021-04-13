@@ -1,6 +1,6 @@
 using System;
 
-namespace FkThat.Mockables
+namespace FkThat.Tdd
 {
     /// <summary>
     /// System clock.
