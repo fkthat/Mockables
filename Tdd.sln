@@ -5,11 +5,11 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A66B84F3-0D1F-44EA-A127-B216C9A9DD90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FkThat.Mockables", "src\FkThat.Mockables\FkThat.Mockables.csproj", "{45E9AAAC-A69E-4ED1-81F7-B56E37D22FE8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FkThat.Tdd", "src\FkThat.Tdd\FkThat.Tdd.csproj", "{45E9AAAC-A69E-4ED1-81F7-B56E37D22FE8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F9F7B3A9-AED2-4B63-807B-00FB93DC86F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.FkThat.Mockables", "test\Test.FkThat.Mockables\Test.FkThat.Mockables.csproj", "{7FD3244B-9620-4372-A3B0-32B64D13C175}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.FkThat.Tdd", "test\Test.FkThat.Tdd\Test.FkThat.Tdd.csproj", "{7FD3244B-9620-4372-A3B0-32B64D13C175}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
