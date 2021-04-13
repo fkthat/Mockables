@@ -2,7 +2,7 @@ using System.Linq;
 using FluentAssertions;
 using Xunit;
 
-namespace FkThat.Mockables
+namespace FkThat.Tdd
 {
     public class Test_GuidGen
     {

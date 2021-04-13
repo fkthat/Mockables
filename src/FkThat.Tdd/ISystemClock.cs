@@ -1,11 +1,11 @@
 using System;
 
-namespace FkThat.Mockables
+namespace FkThat.Tdd
 {
     /// <summary>
     /// System clock.
     /// </summary>
-    public class SystemClock : ISystemClock
+    public interface ISystemClock
     {
         /// <summary>
         /// Gets a System.DateTimeOffset object whose date and time are set to the current
@@ -15,6 +15,6 @@ namespace FkThat.Mockables
         /// An object whose date and time is the current Coordinated Universal Time (UTC) and whose
         /// offset is System.TimeSpan.Zero.
         /// </value>
-        public DateTimeOffset UtcNow => DateTimeOffset.UtcNow;
+        DateTimeOffset UtcNow { get; }
     }
 }

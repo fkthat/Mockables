@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <IsPackable>false</IsPackable>
-    <RootNamespace>FkThat.Mockables</RootNamespace>
+    <RootNamespace>FkThat.Tdd</RootNamespace>
     <Nullable>enable</Nullable>
     <NoWarn>CA1062;$(NoWarn)</NoWarn>
   </PropertyGroup>
@@ -22,7 +22,7 @@
     </PackageReference>
   </ItemGroup>
   <PropertyGroup>
-    <TargetProjectPath>..\..\src\FkThat.Mockables\FkThat.Mockables.csproj</TargetProjectPath>
+    <TargetProjectPath>..\..\src\FkThat.Tdd\FkThat.Tdd.csproj</TargetProjectPath>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="$(TargetProjectPath)" Condition="Exists($(TargetProjectPath))" />
@@ -30,7 +30,7 @@
   <PropertyGroup>
     <CollectCoverage>true</CollectCoverage>
     <CoverletOutputFormat>cobertura</CoverletOutputFormat>
-    <Include>[FkThat.Mockables]*</Include>
+    <Include>[FkThat.Tdd]*</Include>
     <Exclude>[*]*.Program,[*]*.Startup</Exclude>
     <ExcludeByAttribute>Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute</ExcludeByAttribute>
   </PropertyGroup>

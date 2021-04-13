@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 
-namespace FkThat.Mockables
+namespace FkThat.Tdd
 {
     /// <summary>
     /// Random number generator.
