@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <IsPackable>false</IsPackable>
-    <RootNamespace>FkThat.Mockables.DependencyInjection</RootNamespace>
+    <RootNamespace>FkThat.Mockables.DI</RootNamespace>
     <Nullable>enable</Nullable>
     <NoWarn>CA1062;$(NoWarn)</NoWarn>
   </PropertyGroup>
@@ -23,11 +23,10 @@
     </PackageReference>
   </ItemGroup>
   <PropertyGroup>
-    <TargetProjectPath>..\..\src\FkThat.Mockables.DependencyInjection\FkThat.Mockables.DependencyInjection.csproj</TargetProjectPath>
+    <TargetProjectPath>..\..\src\FkThat.Mockables.DI\FkThat.Mockables.DI.csproj</TargetProjectPath>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="$(TargetProjectPath)" Condition="Exists($(TargetProjectPath))" />
-    <ProjectReference Include="..\..\src\FkThat.Mockables.DependencyInjection\FkThat.Mockables.DependencyInjection.csproj" />
   </ItemGroup>
   <PropertyGroup>
     <CollectCoverage>true</CollectCoverage>
