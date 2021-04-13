@@ -8,6 +8,15 @@ namespace FkThat.Mockables
 {
     public class Test_Random
     {
+        /// <summary>
+        /// This test is just for coverage.
+        /// </summary>
+        [Fact]
+        public void Ctor_ShouldBeOk()
+        {
+            FluentActions.Invoking(() => new Random()).Should().NotThrow();
+        }
+
         [Fact]
         public void NextBytes_ShouldCallRandomGenerator()
         {
