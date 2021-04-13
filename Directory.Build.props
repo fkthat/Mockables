@@ -11,11 +11,11 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <AssemblyVersion>$(VersionPrefix).0</AssemblyVersion>
     <FileVersion>$(VersionPrefix).0</FileVersion>
-    <PackageProjectUrl>https://github.com/fkthat/Mockables</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/fkthat/Mockables</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/fkthat/Tdd</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/fkthat/Tdd</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>fkthat</PackageTags>
-    <Description>Mockables</Description>
+    <Description>Tdd</Description>
     <PackageReleaseNotes>@(ReleaseNoteLines, '%0a')</PackageReleaseNotes>
    </PropertyGroup>
   <!-- include symbols -->
