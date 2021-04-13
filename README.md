@@ -4,4 +4,4 @@
 [![Azure DevOps tests (develop)](https://img.shields.io/azure-devops/tests/FkThat/Mockables/36/develop)](https://dev.azure.com/FkThat/Mockables/_build/latest?definitionId=36&branchName=develop)
 [![Azure DevOps coverage (develop)](https://img.shields.io/azure-devops/coverage/FkThat/Mockables/36/develop)](https://dev.azure.com/FkThat/Mockables/_build/latest?definitionId=36&branchName=develop)
 [![MyGet (with prereleases)](https://img.shields.io/myget/fkthat/vpre/FkThat.Mockables?label=FkThat.Mockables%20%28MyGet%29)](https://www.myget.org/feed/fkthat/package/nuget/FkThat.Mockables)
-[![MyGet (with prereleases)](https://img.shields.io/myget/fkthat/vpre/FkThat.Mockables.DependencyInjection?label=FkThat.Mockables.DependencyInjection%20%28MyGet%29)](https://www.myget.org/feed/fkthat/package/nuget/FkThat.Mockables.DependencyInjection)
+[![MyGet (with prereleases)](https://img.shields.io/myget/fkthat/vpre/FkThat.Mockables.DI?label=FkThat.Mockables.DI%20%28MyGet%29)](https://www.myget.org/feed/fkthat/package/nuget/FkThat.Mockables.DI)
