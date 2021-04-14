@@ -1,7 +1,7 @@
 using System;
 using System.Security.Cryptography;
 
-namespace FkThat.Mockables
+namespace FkThat.Tdd
 {
     /// <summary>
     /// Random number generator.

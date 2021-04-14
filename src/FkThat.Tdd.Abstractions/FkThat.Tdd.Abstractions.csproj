@@ -11,7 +11,7 @@
   </PropertyGroup>
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
-      <_Parameter1>Test.FkThat.Mockables</_Parameter1>
+      <_Parameter1>Test.FkThat.Tdd.Abstractions</_Parameter1>
     </AssemblyAttribute>
   </ItemGroup>
 </Project>
