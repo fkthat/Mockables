@@ -15,6 +15,7 @@ try {
         'start-feature' {
             $name = $Args[0]
             git checkout develop && `
+            git pull && `
             git checkout -b feature/$name && `
             git push -u origin feature/$name
         }
