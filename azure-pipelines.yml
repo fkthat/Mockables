@@ -23,7 +23,7 @@ steps:
     useGlobalJson: true
 
 - task: DotNetCoreCLI@2
-  displayName: Restore
+  displayName: Restore packages
   inputs:
     command: 'restore'
     arguments: -c $(BuildConfiguration)
@@ -35,7 +35,7 @@ steps:
     arguments: -c $(BuildConfiguration) --no-restore
 
 - task: DotNetCoreCLI@2
-  displayName: Test
+  displayName: Run tests
   inputs:
     command: 'test'
     publishTestResults: false
@@ -43,13 +43,14 @@ steps:
 
 - task: PublishTestResults@2
   condition: eq(variables['Build.Reason'], 'IndividualCI')
+  displayName: Publish test results
   inputs:
     testResultsFormat: VSTest
     testResultsFiles : test/**/TestResults/*.trx
 
 - task: DotNetCoreCLI@2
   condition: eq(variables['Build.Reason'], 'IndividualCI')
-  displayName: Restore tools
+  displayName: Restore coverage reporting tool
   inputs:
     command: 'custom'
     custom: 'tool'
@@ -73,12 +74,6 @@ steps:
     summaryFileLocation: 'Coverage/Cobertura.xml'
 
 - task: Bash@3
-  condition: >-
-    or(
-      eq(variables['Build.Reason'], 'IndividualCI'),
-      and(
-        eq(variables['Build.Reason'], 'Manual'),
-        startsWith(variables['Build.SourceBranch'], 'ref/tags/')))
   displayName: Determine to create NuGet
   inputs:
     targetType: 'inline'
@@ -92,8 +87,10 @@ steps:
     script: echo "##vso[task.setvariable variable=VersionSuffix]CI-$(Build.BuildNumber)"
 
 - task: DotNetCoreCLI@2
-  condition: eq(variables.NuGet, true)
-  displayName: Pack
+  condition: >-
+    or(eq(variables['Build.Reason'], 'IndividualCI'),
+      and(eq(variables['Build.Reason'], 'Manual'), startsWith(variables['Build.SourceBranch'], 'ref/tags/')))
+  displayName: Pack NuGet
   inputs:
     command: 'custom'
     projects: 'src/**/*.csproj'
@@ -103,8 +100,10 @@ steps:
       -p:VersionSuffix=$(VersionSuffix) --no-build
 
 - task: NuGetCommand@2
-  condition: eq(variables.NuGet, true)
-  displayName: Push
+  condition: >-
+    or(eq(variables['Build.Reason'], 'IndividualCI'),
+      and(eq(variables['Build.Reason'], 'Manual'), startsWith(variables['Build.SourceBranch'], 'ref/tags/')))
+  displayName: Push NuGet
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
