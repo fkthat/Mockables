@@ -21,6 +21,19 @@ try {
         }
         'finish-feature' {
             $name = $Args[0]
+
+            if(-not $name) {
+                $name = (git branch --show-current)
+
+                if($name -match '^feature/') {
+                    $name = $name.Substring(8)
+                }
+                else {
+                    Write-Error "$name is not a feature branch"
+                    break;
+                }
+            }
+
             git checkout develop && `
             git pull && `
             git remote prune origin && `
