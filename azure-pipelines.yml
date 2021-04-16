@@ -46,7 +46,7 @@ steps:
   inputs:
     command: 'test'
     publishTestResults: false
-    arguments: -c $(BuildConfiguration) --no-build
+    arguments: -c $(BuildConfiguration) --no-build --logger trx
 
 - task: PublishTestResults@2
   inputs:
