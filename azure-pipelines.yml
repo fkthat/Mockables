@@ -1,0 +1,112 @@
+# Azure Pipelines CI
+
+trigger:
+  - develop
+  - master
+pr:
+  - develop
+  - master
+
+variables:
+  BuildConfiguration: Release
+  VersionSuffix: ''
+
+pool:
+  vmImage: ubuntu-20.04
+
+steps:
+
+- task: UseDotNet@2
+  displayName: Use SDK
+  inputs:
+    packageType: 'sdk'
+    useGlobalJson: true
+
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: 'restore'
+    arguments: -c $(BuildConfiguration)
+
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    command: 'build'
+    arguments: -c $(BuildConfiguration) --no-restore
+
+- task: DotNetCoreCLI@2
+  displayName: Test
+  inputs:
+    command: 'test'
+    publishTestResults: false
+    arguments: -c $(BuildConfiguration) --no-build --logger trx
+
+- task: PublishTestResults@2
+  condition: eq(variables['Build.Reason'], 'IndividualCI')
+  inputs:
+    testResultsFormat: VSTest
+    testResultsFiles : test/**/TestResults/*.trx
+
+- task: DotNetCoreCLI@2
+  condition: eq(variables['Build.Reason'], 'IndividualCI')
+  displayName: Restore tools
+  inputs:
+    command: 'custom'
+    custom: 'tool'
+    arguments: restore
+
+- task: DotNetCoreCLI@2
+  condition: eq(variables['Build.Reason'], 'IndividualCI')
+  displayName: Generate coverage report
+  inputs:
+    command: 'custom'
+    custom: 'tool'
+    arguments: >-
+      run reportgenerator -reports:test/**/coverage.cobertura.xml
+      -targetdir:Coverage -reporttypes:Cobertura
+
+- task: PublishCodeCoverageResults@1
+  condition: eq(variables['Build.Reason'], 'IndividualCI')
+  displayName: Publish coverage report
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: 'Coverage/Cobertura.xml'
+
+- task: Bash@3
+  condition: >-
+    or(
+      eq(variables['Build.Reason'], 'IndividualCI'),
+      and(
+        eq(variables['Build.Reason'], 'Manual'),
+        startsWith(variables['Build.SourceBranch'], 'ref/tags/')))
+  displayName: Determine to create NuGet
+  inputs:
+    targetType: 'inline'
+    script: echo "##vso[task.setvariable variable=NuGet]true"
+
+- task: Bash@3
+  condition: eq(variables['Build.Reason'], 'IndividualCI')
+  displayName: Set version suffix
+  inputs:
+    targetType: 'inline'
+    script: echo "##vso[task.setvariable variable=VersionSuffix]CI-$(Build.BuildNumber)"
+
+- task: DotNetCoreCLI@2
+  condition: eq(variables.NuGet, true)
+  displayName: Pack
+  inputs:
+    command: 'custom'
+    projects: 'src/**/*.csproj'
+    custom: 'pack'
+    arguments: >-
+      -c $(BuildConfiguration) -o $(Build.ArtifactStagingDirectory)
+      -p:VersionSuffix=$(VersionSuffix) --no-build
+
+- task: NuGetCommand@2
+  condition: eq(variables.NuGet, true)
+  displayName: Push
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'MyGet'
