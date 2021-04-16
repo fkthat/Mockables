@@ -1,21 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31213.239
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A66B84F3-0D1F-44EA-A127-B216C9A9DD90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FkThat.Tdd", "src\FkThat.Tdd\FkThat.Tdd.csproj", "{45E9AAAC-A69E-4ED1-81F7-B56E37D22FE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FkThat.Tdd", "src\FkThat.Tdd\FkThat.Tdd.csproj", "{45E9AAAC-A69E-4ED1-81F7-B56E37D22FE8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F9F7B3A9-AED2-4B63-807B-00FB93DC86F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.FkThat.Tdd", "test\Test.FkThat.Tdd\Test.FkThat.Tdd.csproj", "{7FD3244B-9620-4372-A3B0-32B64D13C175}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.FkThat.Tdd", "test\Test.FkThat.Tdd\Test.FkThat.Tdd.csproj", "{7FD3244B-9620-4372-A3B0-32B64D13C175}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FkThat.Tdd.Abstractions", "src\FkThat.Tdd.Abstractions\FkThat.Tdd.Abstractions.csproj", "{C87CFE4E-ACD0-45F8-B12F-FBCC21874645}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FkThat.Tdd.Abstractions", "src\FkThat.Tdd.Abstractions\FkThat.Tdd.Abstractions.csproj", "{C87CFE4E-ACD0-45F8-B12F-FBCC21874645}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FkThat.Tdd.DependencyInjection", "src\FkThat.Tdd.DependencyInjection\FkThat.Tdd.DependencyInjection.csproj", "{5672B4C1-6B8D-4980-B5D6-EE522E28A7E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FkThat.Tdd.DependencyInjection", "src\FkThat.Tdd.DependencyInjection\FkThat.Tdd.DependencyInjection.csproj", "{5672B4C1-6B8D-4980-B5D6-EE522E28A7E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.FkThat.Tdd.DependencyInjection", "test\Test.FkThat.Tdd.DependencyInjection\Test.FkThat.Tdd.DependencyInjection.csproj", "{D61A6BFF-01BD-4F81-BE38-64B946AEF2FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.FkThat.Tdd.DependencyInjection", "test\Test.FkThat.Tdd.DependencyInjection\Test.FkThat.Tdd.DependencyInjection.csproj", "{D61A6BFF-01BD-4F81-BE38-64B946AEF2FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.FkThat.Tdd.Abstractions", "test\Test.FkThat.Tdd.Abstractions\Test.FkThat.Tdd.Abstractions.csproj", "{4A154222-BA36-4D90-BC39-A39201CDB852}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,9 +27,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{45E9AAAC-A69E-4ED1-81F7-B56E37D22FE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -90,6 +89,21 @@ Global
 		{D61A6BFF-01BD-4F81-BE38-64B946AEF2FF}.Release|x64.Build.0 = Release|Any CPU
 		{D61A6BFF-01BD-4F81-BE38-64B946AEF2FF}.Release|x86.ActiveCfg = Release|Any CPU
 		{D61A6BFF-01BD-4F81-BE38-64B946AEF2FF}.Release|x86.Build.0 = Release|Any CPU
+		{4A154222-BA36-4D90-BC39-A39201CDB852}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A154222-BA36-4D90-BC39-A39201CDB852}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A154222-BA36-4D90-BC39-A39201CDB852}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4A154222-BA36-4D90-BC39-A39201CDB852}.Debug|x64.Build.0 = Debug|Any CPU
+		{4A154222-BA36-4D90-BC39-A39201CDB852}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4A154222-BA36-4D90-BC39-A39201CDB852}.Debug|x86.Build.0 = Debug|Any CPU
+		{4A154222-BA36-4D90-BC39-A39201CDB852}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A154222-BA36-4D90-BC39-A39201CDB852}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A154222-BA36-4D90-BC39-A39201CDB852}.Release|x64.ActiveCfg = Release|Any CPU
+		{4A154222-BA36-4D90-BC39-A39201CDB852}.Release|x64.Build.0 = Release|Any CPU
+		{4A154222-BA36-4D90-BC39-A39201CDB852}.Release|x86.ActiveCfg = Release|Any CPU
+		{4A154222-BA36-4D90-BC39-A39201CDB852}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{45E9AAAC-A69E-4ED1-81F7-B56E37D22FE8} = {A66B84F3-0D1F-44EA-A127-B216C9A9DD90}
@@ -97,5 +111,9 @@ Global
 		{C87CFE4E-ACD0-45F8-B12F-FBCC21874645} = {A66B84F3-0D1F-44EA-A127-B216C9A9DD90}
 		{5672B4C1-6B8D-4980-B5D6-EE522E28A7E8} = {A66B84F3-0D1F-44EA-A127-B216C9A9DD90}
 		{D61A6BFF-01BD-4F81-BE38-64B946AEF2FF} = {F9F7B3A9-AED2-4B63-807B-00FB93DC86F4}
+		{4A154222-BA36-4D90-BC39-A39201CDB852} = {F9F7B3A9-AED2-4B63-807B-00FB93DC86F4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E7848CB3-8326-4A96-87F6-42004D0FFBC8}
 	EndGlobalSection
 EndGlobal
