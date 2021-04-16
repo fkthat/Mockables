@@ -22,7 +22,7 @@ pool:
 steps:
 
 - task: Bash@3
-  condition: startsWith(variables['Build.SourceBranch'], 'ref/tags/')
+  condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
   displayName: Set up Release build
   inputs:
     targetType: 'inline'
