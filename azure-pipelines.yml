@@ -16,13 +16,6 @@ pool:
 
 steps:
 
-- task: Bash@3
-  condition: eq(variables['Build.Reason'], 'IndividualCI')
-  displayName: Set version suffix
-  inputs:
-    targetType: 'inline'
-    script: echo "##vso[task.setvariable variable=VersionSuffix]CI-$(Build.BuildNumber)"
-
 - task: UseDotNet@2
   displayName: Use SDK
   inputs:
@@ -49,6 +42,7 @@ steps:
     arguments: -c $(BuildConfiguration) --no-build --logger trx
 
 - task: PublishTestResults@2
+  condition: eq(variables['Build.Reason'], 'IndividualCI')
   inputs:
     testResultsFormat: VSTest
     testResultsFiles : test/**/TestResults/*.trx
@@ -78,13 +72,27 @@ steps:
     codeCoverageTool: 'Cobertura'
     summaryFileLocation: 'Coverage/Cobertura.xml'
 
-- task: DotNetCoreCLI@2
+- task: Bash@3
   condition: >-
     or(
       eq(variables['Build.Reason'], 'IndividualCI'),
       and(
         eq(variables['Build.Reason'], 'Manual'),
         startsWith(variables['Build.SourceBranch'], 'ref/tags/')))
+  displayName: Determine to create NuGet
+  inputs:
+    targetType: 'inline'
+    script: echo "##vso[task.setvariable variable=NuGet]true"
+
+- task: Bash@3
+  condition: eq(variables['Build.Reason'], 'IndividualCI')
+  displayName: Set version suffix
+  inputs:
+    targetType: 'inline'
+    script: echo "##vso[task.setvariable variable=VersionSuffix]CI-$(Build.BuildNumber)"
+
+- task: DotNetCoreCLI@2
+  condition: eq(variables.NuGet, true)
   displayName: Pack
   inputs:
     command: 'custom'
@@ -95,13 +103,8 @@ steps:
       -p:VersionSuffix=$(VersionSuffix) --no-build
 
 - task: NuGetCommand@2
-  condition: >-
-    or(
-      eq(variables['Build.Reason'], 'IndividualCI'),
-      and(
-        eq(variables['Build.Reason'], 'Manual'),
-        startsWith(variables['Build.SourceBranch'], 'ref/tags/')))
-  displayName: Push to MyGet
+  condition: eq(variables.NuGet, true)
+  displayName: Push
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
