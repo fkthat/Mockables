@@ -14,8 +14,8 @@
     <PackageProjectUrl>https://github.com/fkthat/Tdd</PackageProjectUrl>
     <RepositoryUrl>https://github.com/fkthat/Tdd</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>fkthat</PackageTags>
-    <Description>Tdd</Description>
+    <PackageTags>fkthat,tdd,mock</PackageTags>
+    <Description>Simple wrappers to write more unit-testable code.</Description>
     <PackageReleaseNotes>@(ReleaseNoteLines, '%0a')</PackageReleaseNotes>
    </PropertyGroup>
   <!-- include symbols -->
