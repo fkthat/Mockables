@@ -1,20 +1,27 @@
 # Azure Pipelines CI
 
 trigger:
-- develop
-- master
+  - develop
+  - master
 pr:
-- develop
-- master
+  - develop
+  - master
 
 variables:
-  BuildConfiguration: Debug
-  VersionSuffix: CI-$(Build.BuildNumber)
+  BuildConfiguration: Release
+  VersionSuffix: ''
 
 pool:
   vmImage: ubuntu-20.04
 
 steps:
+
+- task: Bash@3
+  condition: eq(variables['Build.Reason'], 'IndividualCI')
+  displayName: Set version suffix
+  inputs:
+    targetType: 'inline'
+    script: echo "##vso[task.setvariable variable=VersionSuffix]CI-$(Build.BuildNumber)"
 
 - task: UseDotNet@2
   displayName: Use SDK
@@ -42,6 +49,7 @@ steps:
     arguments: -c $(BuildConfiguration) --no-build
 
 - task: DotNetCoreCLI@2
+  condition: eq(variables['Build.Reason'], 'IndividualCI')
   displayName: Restore tools
   inputs:
     command: 'custom'
@@ -49,6 +57,7 @@ steps:
     arguments: restore
 
 - task: DotNetCoreCLI@2
+  condition: eq(variables['Build.Reason'], 'IndividualCI')
   displayName: Generate coverage report
   inputs:
     command: 'custom'
@@ -58,28 +67,20 @@ steps:
       -targetdir:Coverage -reporttypes:Cobertura
 
 - task: PublishCodeCoverageResults@1
+  condition: eq(variables['Build.Reason'], 'IndividualCI')
   displayName: Publish coverage report
   inputs:
     codeCoverageTool: 'Cobertura'
     summaryFileLocation: 'Coverage/Cobertura.xml'
 
-- task: Bash@3
-  displayName: Turn pack on
-  condition: eq(variables['Build.Reason'], 'IndividualCI')
-  inputs:
-    targetType: 'inline'
-    script: echo "##vso[task.setvariable variable=Pack]Yes"
-
-- task: Bash@3
-  displayName: Set version suffix
-  condition: and(eq(variables.Pack, 'Yes'), ne(variables['Build.SourceBranchName'], 'master'))
-  inputs:
-    targetType: 'inline'
-    script: echo "##vso[task.setvariable variable=VersionSuffix]CI-$(Build.BuildNumber)"
-
 - task: DotNetCoreCLI@2
+  condition: >-
+    or(
+      eq(variables['Build.Reason'], 'IndividualCI'),
+      and(
+        eq(variables['Build.Reason'], 'Manual'),
+        startsWith(variables['Build.SourceBranch'], 'ref/tags/')))
   displayName: Pack
-  condition: eq(variables.Pack, 'Yes')
   inputs:
     command: 'custom'
     projects: 'src/**/*.csproj'
@@ -89,8 +90,13 @@ steps:
       -p:VersionSuffix=$(VersionSuffix) --no-build
 
 - task: NuGetCommand@2
+  condition: >-
+    or(
+      eq(variables['Build.Reason'], 'IndividualCI'),
+      and(
+        eq(variables['Build.Reason'], 'Manual'),
+        startsWith(variables['Build.SourceBranch'], 'ref/tags/')))
   displayName: Push to MyGet
-  condition: eq(variables.Pack, 'Yes')
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
