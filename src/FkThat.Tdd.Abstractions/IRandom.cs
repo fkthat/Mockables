@@ -1,8 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Threading.Tasks;
 
 namespace FkThat.Tdd
 {
@@ -56,7 +52,6 @@ namespace FkThat.Tdd
         /// <summary>
         /// Returns a random integer that is within a specified range.
         /// </summary>
-        /// <param name="random">The <c cref="IRandom"/> instance.</param>
         /// <param name="minValue">The inclusive lower bound of the random number returned.</param>
         /// <param name="maxValue">
         /// The exclusive upper bound of the random number returned. maxValue must be greater than

@@ -5,7 +5,7 @@ using Xunit;
 
 namespace FkThat.Tdd
 {
-    public class Test_RandomExtensions
+    public class Test_IRandom
     {
         [Theory]
         [InlineData(0x00, 0x00, 0x00, 0x00, 0)]
@@ -14,7 +14,7 @@ namespace FkThat.Tdd
         public void Next_ShouldReturnRandomInt(
             byte a, byte b, byte c, byte d, int expected)
         {
-            var rand = A.Fake<IRandom>();
+            IRandom rand = A.Fake<Random>();
 
             A.CallTo(() => rand.NextBytes(A<byte[]>._))
                 .Invokes((byte[] buf) => {
@@ -35,7 +35,7 @@ namespace FkThat.Tdd
         public void NextDouble_ShouldReturnRandomDouble(
             byte a, byte b, byte c, byte d, double expected)
         {
-            var rand = A.Fake<IRandom>();
+            IRandom rand = A.Fake<Random>();
 
             A.CallTo(() => rand.NextBytes(A<byte[]>._))
                 .Invokes((byte[] buf) => {
@@ -52,7 +52,7 @@ namespace FkThat.Tdd
         [Fact]
         public void Next_WithUpperBound_ShouldValidateBound()
         {
-            var rand = A.Fake<IRandom>();
+            IRandom rand = A.Fake<Random>();
             rand.Invoking(r => r.Next(-42)).Should().Throw<ArgumentOutOfRangeException>();
         }
 
@@ -63,7 +63,7 @@ namespace FkThat.Tdd
         public void Next_WithUpperBound_ShouldReturnRandomInt(
             byte a, byte b, byte c, byte d, int expected)
         {
-            var rand = A.Fake<IRandom>();
+            IRandom rand = A.Fake<Random>();
 
             A.CallTo(() => rand.NextBytes(A<byte[]>._))
                 .Invokes((byte[] buf) => {
@@ -80,7 +80,7 @@ namespace FkThat.Tdd
         [Fact]
         public void Next_WithLowerUpperBound_ShouldValidateBounds()
         {
-            var rand = A.Fake<IRandom>();
+            IRandom rand = A.Fake<Random>();
             rand.Invoking(r => r.Next(69, 42)).Should().Throw<ArgumentOutOfRangeException>();
         }
 
@@ -91,7 +91,7 @@ namespace FkThat.Tdd
         public void Next_WithLowerUpperBound_ShouldReturnRandomInt(
             byte a, byte b, byte c, byte d, int expected)
         {
-            var rand = A.Fake<IRandom>();
+            IRandom rand = A.Fake<Random>();
 
             A.CallTo(() => rand.NextBytes(A<byte[]>._))
                 .Invokes((byte[] buf) => {
@@ -103,6 +103,11 @@ namespace FkThat.Tdd
 
             var r = rand.Next(42, 69);
             r.Should().Be(expected);
+        }
+
+        public abstract class Random : IRandom
+        {
+            public abstract void NextBytes(byte[] buffer);
         }
     }
 }
