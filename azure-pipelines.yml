@@ -45,8 +45,12 @@ steps:
   displayName: Test
   inputs:
     command: 'test'
-    publishTestResults: true
-    arguments: -c $(BuildConfiguration) --no-build
+    arguments: -c $(BuildConfiguration) --no-build --logger trx
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: VSTest
+    testResultsFiles : test/**/TestResults/*.trx
 
 - task: DotNetCoreCLI@2
   condition: eq(variables['Build.Reason'], 'IndividualCI')
