@@ -1,6 +1,0 @@
-2.0.0
-- Bump up minimal requirements to netstandard 2.1.
-- Migrate extension methods to the default interface methods.
-
-1.0.0
-- Initial release.
