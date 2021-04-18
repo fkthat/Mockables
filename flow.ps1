@@ -70,6 +70,9 @@ try {
         }
     }
 }
+catch {
+    Write-Host $_
+}
 finally {
     Pop-Location
 }
