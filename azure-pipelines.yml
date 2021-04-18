@@ -37,7 +37,7 @@ steps:
           echo "##vso[task.setvariable variable=NuGet]true"
           echo "##vso[task.setvariable variable=BuildConfiguration]Release"
           echo "##vso[task.setvariable variable=VersionSuffix]"
-        fi"
+        fi
 
   - task: Bash@3
     displayName: Show build configuration
