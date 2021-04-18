@@ -24,6 +24,7 @@ steps:
 
   # Build NuGet only for develop and master branch commits
   # the -CI-* version for the develop branch and release one for master
+
   - task: Bash@3
     displayName: Setup build configuration
     inputs:
@@ -37,6 +38,15 @@ steps:
           echo ##vso[task.setvariable variable=BuildConfiguration]Release
           echo ##vso[task.setvariable variable=VersionSuffix]
         fi
+
+  - task: Bash@3
+    displayName: Show build configuration
+    inputs:
+      targetType: inline
+      script: |
+        echo $(BuildConfiguration)
+        echo $(VersionSuffix)
+        echo $(NuGet)
 
   # The typical restore/build/test pipeline
 
@@ -94,7 +104,7 @@ steps:
 
   - task: DotNetCoreCLI@2
     displayName: Create NuGet package
-    condition: variables.NuGet
+    condition: eq(variables.NuGet, true)
     inputs:
       command: 'custom'
       projects: 'src/**/*.csproj'
@@ -105,7 +115,7 @@ steps:
 
   - task: NuGetCommand@2
     displayName: Publish NuGet package
-    condition: variables.NuGet
+    condition: eq(variables.NuGet, true)
     inputs:
       command: 'push'
       packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
