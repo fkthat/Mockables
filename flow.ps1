@@ -20,7 +20,7 @@ try {
     $dirty += &{ git diff-index --name-only HEAD }
 
     if($dirty) {
-        Throw "The folder is not clean. Commit or stash changes first."
+        throw "The folder is not clean. Commit or stash changes first."
     }
 
     # Base branch for the operation
@@ -37,13 +37,13 @@ try {
     if (-not $Name) {
         switch ($Cmd) {
             'start' {
-                Throw 'Missed $Name parameter.'
+                throw 'Missed $Name parameter.'
             }
             'finish' {
                 $current = git branch --show-current
 
                 if (-not $current -match "^$SubCmd/") {
-                    Throw "$current is not a $SubCmd branch."
+                    throw "$current is not a $SubCmd branch."
                 }
 
                 $Name = $branch -replace "^$SubCmd/", ""
@@ -53,20 +53,20 @@ try {
 
     # sync base branch
     git checkout $base && git pull || `
-        Throw 'Terminated due to the failure.'
+        throw 'Terminated due to the failure.'
 
     switch($Cmd) {
         'start' {
             # create the feature/etc branch and set tracking
             git checkout -b "$SubCmd/$Name" && `
                 git push -u origin "$SubCmd/$Name" || `
-                Throw 'Terminated due to the failure.'
+                throw 'Terminated due to the failure.'
         }
         'finish' {
             # cleanup the feature/etc branch
             git remote prune origin && `
                 git branch -d "$SubCmd/$Name" || `
-                Throw 'Terminated due to the failure.'
+                throw 'Terminated due to the failure.'
         }
     }
 }
