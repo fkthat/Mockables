@@ -44,9 +44,9 @@ steps:
     inputs:
       targetType: inline
       script: |
-        echo $(BuildConfiguration)
-        echo $(VersionSuffix)
-        echo $(NuGet)
+        echo BuildConfiguration: $(BuildConfiguration)
+        echo VersionSuffix: $(VersionSuffix)
+        echo NuGet: $(NuGet)
 
   # The typical restore/build/test pipeline
 
