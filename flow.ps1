@@ -53,20 +53,20 @@ try {
 
     # sync base branch
     git checkout $base && git pull || `
-        throw 'Terminated due to the failure.'
+        &{ throw 'Terminated due to the failure.' }
 
     switch($Cmd) {
         'start' {
             # create the feature/etc branch and set tracking
             git checkout -b "$SubCmd/$Name" && `
                 git push -u origin "$SubCmd/$Name" || `
-                throw 'Terminated due to the failure.'
+                &{ throw 'Terminated due to the failure.' }
         }
         'finish' {
             # cleanup the feature/etc branch
             git remote prune origin && `
                 git branch -d "$SubCmd/$Name" || `
-                throw 'Terminated due to the failure.'
+                &{ throw 'Terminated due to the failure.' }
         }
     }
 }
