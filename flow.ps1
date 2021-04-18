@@ -42,7 +42,7 @@ try {
             'finish' {
                 $current = git branch --show-current
 
-                if (-not $current -match "^$SubCmd/") {
+                if (-not ($current -match "^$SubCmd/")) {
                     throw "$current is not a $SubCmd branch."
                 }
 
