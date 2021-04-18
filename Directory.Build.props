@@ -1,7 +1,7 @@
 <Project>
   <!-- Version -->
   <PropertyGroup>
-    <VersionPrefix>2.0.0</VersionPrefix>
+    <VersionPrefix>0.0.0</VersionPrefix>
   </PropertyGroup>
   <!-- package properties -->
   <PropertyGroup>
@@ -15,7 +15,7 @@
     <RepositoryUrl>https://github.com/fkthat/Tdd</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>fkthat,tdd,mock</PackageTags>
-    <Description>Simple wrappers to write more unit-testable code.</Description>
+    <Description>Simple wrappers helping to write test-friendly code.</Description>
     <PackageReleaseNotes>@(ReleaseNoteLines, '%0a')</PackageReleaseNotes>
    </PropertyGroup>
   <!-- include symbols -->
