@@ -46,7 +46,7 @@ try {
                     throw "$current is not a $SubCmd branch."
                 }
 
-                $Name = $branch -replace "^$SubCmd/", ""
+                $Name = $current -replace "^$SubCmd/", ""
             }
         }
     }
