@@ -3,12 +3,12 @@ using FkThat.Tdd;
 namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
-    /// Mockables extensions for <see cref="IServiceCollection"/>.
+    /// Extension methods to <see cref="IServiceCollection"/>.
     /// </summary>
     public static class ServiceCollectionExtensions
     {
         /// <summary>
-        /// Adds the mockables.
+        /// Adds the Tdd classes.
         /// </summary>
         /// <param name="services">The <c cref="IServiceCollection"/> instance.</param>
         /// <returns>The <c cref="IServiceCollection"/>.</returns>
