@@ -19,7 +19,9 @@ namespace Microsoft.Extensions.DependencyInjection
                 new ServiceDescriptor(
                     typeof(IGuidGen), typeof(GuidGen), ServiceLifetime.Transient),
                 new ServiceDescriptor(
-                    typeof(IRandom), typeof(Random), ServiceLifetime.Transient));
+                    typeof(IRandom), typeof(Random), ServiceLifetime.Transient),
+                new ServiceDescriptor(
+                    typeof(IConsole), typeof(ConsoleAdapter), ServiceLifetime.Transient));
         }
     }
 }
