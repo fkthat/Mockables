@@ -15,6 +15,7 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddTdd(this IServiceCollection services) =>
             services.AddTransient<ISystemClock, SystemClock>()
                 .AddTransient<IGuidGen, GuidGen>()
-                .AddTransient<IRandom, Random>();
+                .AddTransient<IRandom, Random>()
+                .AddTransient<IConsole, ConsoleAdapter>();
     }
 }
