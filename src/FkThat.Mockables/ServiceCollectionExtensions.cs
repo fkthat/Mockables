@@ -13,7 +13,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// </summary>
         /// <param name="services">The <c cref="IServiceCollection"/> instance.</param>
         /// <returns>The <c cref="IServiceCollection"/>.</returns>
-        public static IServiceCollection AddTdd(this IServiceCollection services) =>
+        public static IServiceCollection AddMockables(this IServiceCollection services) =>
             services.AddTransient<ISystemClock, SystemClock>()
                 .AddTransient<IGuidGen, GuidGen>()
                 .AddTransient<IRandom, Random>()

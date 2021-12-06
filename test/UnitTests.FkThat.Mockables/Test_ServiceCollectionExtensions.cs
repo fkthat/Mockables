@@ -6,10 +6,10 @@ namespace Microsoft.Extensions.DependencyInjection
     public class Test_ServiceCollectionExtensions
     {
         [Fact]
-        public void AddTdd_ShouldAddRegistrations()
+        public void AddMockables_ShouldAddRegistrations()
         {
             ServiceCollection services = new();
-            var r = services.AddTdd();
+            var r = services.AddMockables();
             r.Should().BeSameAs(services);
 
             services.Should().BeEquivalentTo(new[] {
