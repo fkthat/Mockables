@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <IsPackable>false</IsPackable>
@@ -8,7 +8,7 @@
     <NoWarn>CA1062;$(NoWarn)</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
-    <CollectCoverage>true</CollectCoverage>
+    <CollectCoverage>false</CollectCoverage>
     <CoverletOutputFormat>opencover</CoverletOutputFormat>
     <!-- Include here projects to collect test coverage -->
     <!--<Include>[MyProject]*</Include>-->
@@ -35,8 +35,11 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Using Include="FakeItEasy"/>
-    <Using Include="FluentAssertions"/>
-    <Using Include="Xunit"/>
+    <ProjectReference Include="..\..\src\FkThat.Mockables\FkThat.Mockables.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="FakeItEasy" />
+    <Using Include="FluentAssertions" />
+    <Using Include="Xunit" />
   </ItemGroup>
 </Project>
