@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <IsPackable>false</IsPackable>
@@ -37,5 +37,10 @@
   </ItemGroup>
   <ItemGroup Condition="Exists('..\..\src\FkThat.Mockables\FkThat.Mockables.csproj')">
     <ProjectReference Include="..\..\src\FkThat.Mockables\FkThat.Mockables.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="FakeItEasy"/>
+    <Using Include="FluentAssertions"/>
+    <Using Include="Xunit"/>
   </ItemGroup>
 </Project>
