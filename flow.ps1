@@ -3,9 +3,6 @@ param(
     [Parameter(Position = 0, Mandatory = $true)]
     [ValidateSet('start', 'finish')]
     $Cmd,
-    [Parameter(Position = 1, Mandatory = $true)]
-    [ValidateSet('feature', 'bugfix', 'release', 'hotfix')]
-    $SubCmd,
     [Parameter(Position = 2, Mandatory = $false)]
     [string]
     $Name
@@ -14,7 +11,7 @@ param(
 Push-Location $PSScriptRoot
 
 try {
-    $exeError = "Terminated due to the failure"
+    $exeError = "Terminated due to the failure."
 
     # Dirty files
     $dirty = @()
@@ -23,16 +20,6 @@ try {
 
     if($dirty) {
         throw "The folder is not clean. Commit or stash changes first."
-    }
-
-    # Base branch for the operation
-    switch -regex ($SubCmd) {
-        'feature|bugfix|release' {
-            $base = 'develop'
-        }
-        'hotfix' {
-            $base = 'master'
-        }
     }
 
     # Fallback default name (to the current branch)
@@ -53,21 +40,37 @@ try {
         }
     }
 
-    # sync base branch
-    git checkout $base && git pull || `
-        &{ throw $exeError }
-
     switch($Cmd) {
         'start' {
+            if (-not $Name) {
+                throw 'Missed $Name parameter.'
+            }
+
             # create the feature/etc branch and set tracking
-            git checkout -b "$SubCmd/$Name" && `
-                git push -u origin "$SubCmd/$Name" || `
+            git checkout master && `
+                git pull && `
+                git checkout -b "$Name" && `
+                git push -u origin "$Name" || `
                 &{ throw $exeError }
         }
         'finish' {
-            # cleanup the feature/etc branch
-            git remote prune origin && `
-                git branch -d "$SubCmd/$Name" || `
+            if (-not $Name) {
+                $Name = git branch --show-current
+            }
+
+            if($Name -eq 'master') {
+                throw 'Cannot finish master.'
+            }
+
+            if($current -eq 'master' -and -not $Name) {
+                throw 'Missed $Name parameter.'
+            }
+
+            # cleanup the feature branch
+            git checkout master && `
+                git pull && `
+                git remote prune origin && `
+                git branch -d "$Name" || `
                 &{ throw $exeError }
         }
     }
