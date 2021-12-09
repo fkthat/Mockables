@@ -3,7 +3,6 @@
     <TargetFramework>net6.0</TargetFramework>
     <IsPackable>false</IsPackable>
     <RootNamespace>FkThat.Mockables</RootNamespace>
-    <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <NoWarn>CA1062;$(NoWarn)</NoWarn>
@@ -12,7 +11,6 @@
     <CollectCoverage>true</CollectCoverage>
     <CoverletOutputFormat>opencover</CoverletOutputFormat>
     <Include>[FkThat.Mockables]*</Include>
-    <Exclude>[*]*.Program,[*]*.Startup</Exclude>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="coverage.*" />

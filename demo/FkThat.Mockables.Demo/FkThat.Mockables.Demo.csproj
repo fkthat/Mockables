@@ -2,24 +2,10 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <IsPackable>false</IsPackable>
-    <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <NoWarn>CA1062;$(NoWarn)</NoWarn>
   </PropertyGroup>
-  <PropertyGroup>
-    <CollectCoverage>false</CollectCoverage>
-    <CoverletOutputFormat>opencover</CoverletOutputFormat>
-    <!-- Include here projects to collect test coverage -->
-    <!--<Include>[MyProject]*</Include>-->
-    <Exclude>[*]*.Program,[*]*.Startup</Exclude>
-  </PropertyGroup>
-  <ItemGroup>
-    <None Remove="coverage.*" />
-    <Compile Remove="TestResults\**" />
-    <EmbeddedResource Remove="TestResults\**" />
-    <None Remove="TestResults\**" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
