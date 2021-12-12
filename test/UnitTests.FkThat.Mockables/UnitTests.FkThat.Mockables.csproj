@@ -9,7 +9,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <CollectCoverage>true</CollectCoverage>
-    <CoverletOutputFormat>opencover</CoverletOutputFormat>
+    <CoverletOutputFormat>cobertura</CoverletOutputFormat>
     <Include>[FkThat.Mockables]*</Include>
   </PropertyGroup>
   <ItemGroup>
