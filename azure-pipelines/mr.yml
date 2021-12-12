@@ -1,0 +1,14 @@
+# Merge request pipeline
+
+trigger: none
+
+pool:
+  vmImage: ubuntu-20.04
+
+# Default values
+variables:
+  BuildConfiguration: Debug
+  VersionSuffix: MR-$(Build.BuildNumber)
+
+steps:
+  - template: build.yml
