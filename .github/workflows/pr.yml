@@ -16,5 +16,3 @@ jobs:
       run: dotnet build -c Debug --no-restore
     - name: Test
       run: dotnet test -c Debug --no-build
-    - name: Pack
-      run: dotnet pack -c Debug --no-build
