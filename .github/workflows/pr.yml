@@ -2,6 +2,9 @@
 
 on: pull_request
 
+env:
+  CONFIG: Debug
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,6 +16,6 @@ jobs:
     - name: Restore NuGet packages
       run: dotnet restore
     - name: Build
-      run: dotnet build -c Debug --no-restore
+      run: dotnet build -c $CONFIG --no-restore
     - name: Test
-      run: dotnet test -c Debug --no-build
+      run: dotnet test -c $CONFIG --no-build
