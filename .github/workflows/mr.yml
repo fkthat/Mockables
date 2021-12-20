@@ -2,7 +2,7 @@
 # Merge request workflow
 #
 
-on: []
+on: workflow_dispatch
 
 env:
   CONFIG: Debug
