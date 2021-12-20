@@ -1,0 +1,14 @@
+#
+# Merge request workflow
+#
+
+on: []
+
+env:
+  CONFIG: Debug
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: fkthat/actions/build
