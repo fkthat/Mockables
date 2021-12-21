@@ -11,4 +11,5 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: fkthat/Actions/build@0
+      - name: Build
+        uses: fkthat/actions/build@master
