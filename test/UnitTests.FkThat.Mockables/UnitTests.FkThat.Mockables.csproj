@@ -1,43 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <IsPackable>false</IsPackable>
     <RootNamespace>FkThat.Mockables</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <NoWarn>CA1062;$(NoWarn)</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
-    <CollectCoverage>true</CollectCoverage>
-    <CoverletOutputFormat>cobertura</CoverletOutputFormat>
     <Include>[FkThat.Mockables]*</Include>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="coverage.*" />
-    <Compile Remove="TestResults\**" />
-    <EmbeddedResource Remove="TestResults\**" />
-    <None Remove="TestResults\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
-    <PackageReference Include="xunit" Version="2.4.1" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="FluentAssertions" Version="6.2.0" />
-    <PackageReference Include="FakeItEasy" Version="7.2.0" />
-    <PackageReference Include="coverlet.msbuild" Version="3.1.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
   <ItemGroup Condition="Exists('..\..\src\FkThat.Mockables\FkThat.Mockables.csproj')">
     <ProjectReference Include="..\..\src\FkThat.Mockables\FkThat.Mockables.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Using Include="FakeItEasy" />
-    <Using Include="FluentAssertions" />
-    <Using Include="Xunit" />
   </ItemGroup>
 </Project>

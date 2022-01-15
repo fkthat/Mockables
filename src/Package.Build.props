@@ -1,0 +1,27 @@
+<Project>
+  <PropertyGroup>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <Authors>FkThat</Authors>
+    <Company>FkThat</Company>
+    <Copyright>© FkThat, 2021</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <AssemblyVersion>$(VersionPrefix).0</AssemblyVersion>
+    <FileVersion>$(VersionPrefix).0</FileVersion>
+    <PackageProjectUrl>https://github.com/fkthat/Mockables</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/fkthat/Mockables</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>fkthat,testing,mocks</PackageTags>
+    <Description>Simple wrappers helping to write test-friendly code.</Description>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+  <PropertyGroup Condition="Exists('$(MSBuildThisFileDirectory)../RELEASE')">
+    <PackageReleaseNotes>@(ReleaseNoteLines, '%0a')</PackageReleaseNotes>
+  </PropertyGroup>
+  <Target Condition="Exists('$(MSBuildThisFileDirectory)../RELEASE')"
+    Name="PreparePackageReleaseNotesFromFile" BeforeTargets="GenerateNuspec">
+    <ReadLinesFromFile File="$(MSBuildThisFileDirectory)../RELEASE" >
+      <Output TaskParameter="Lines" ItemName="ReleaseNoteLines"/>
+    </ReadLinesFromFile>
+  </Target>
+</Project>
