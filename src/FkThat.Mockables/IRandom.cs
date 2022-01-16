@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace FkThat.Mockables
 {
     /// <summary>
@@ -35,6 +37,8 @@ namespace FkThat.Mockables
         /// maxValue equals 0, maxValue is returned.
         /// </returns>
         /// <exception cref="ArgumentOutOfRangeException">maxValue is less than 0.</exception>
+        [SuppressMessage("Naming", "CA1716:Identifiers should not match keywords",
+            Justification = "Named to replicate System.Random API.")]
         int Next(int maxValue)
         {
             if (maxValue < 0)
@@ -63,6 +67,8 @@ namespace FkThat.Mockables
         /// <exception cref="ArgumentOutOfRangeException">
         /// minValue is greater than maxValue.
         /// </exception>
+        [SuppressMessage("Naming", "CA1716:Identifiers should not match keywords",
+            Justification = "Named to replicate System.Random API.")]
         int Next(int minValue, int maxValue)
         {
             if (minValue > maxValue)
@@ -82,6 +88,8 @@ namespace FkThat.Mockables
         /// A 32-bit signed integer that is greater than or equal to 0 and less than <c
         /// cref="int.MaxValue"/>.
         /// </returns>
+        [SuppressMessage("Naming", "CA1716:Identifiers should not match keywords",
+            Justification = "Named to replicate System.Random API.")]
         int Next()
         {
             var buffer = new byte[4];

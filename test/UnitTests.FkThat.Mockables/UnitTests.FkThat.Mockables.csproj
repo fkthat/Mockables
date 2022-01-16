@@ -1,11 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <RootNamespace>FkThat.Mockables</RootNamespace>
-  </PropertyGroup>
-  <PropertyGroup>
-    <Include>[FkThat.Mockables]*</Include>
-  </PropertyGroup>
-  <ItemGroup Condition="Exists('..\..\src\FkThat.Mockables\FkThat.Mockables.csproj')">
+  <ItemGroup>
     <ProjectReference Include="..\..\src\FkThat.Mockables\FkThat.Mockables.csproj" />
   </ItemGroup>
 </Project>
