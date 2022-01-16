@@ -3,7 +3,7 @@ namespace FkThat.Mockables
     /// <summary>
     /// GUID generator.
     /// </summary>
-    public class GuidGen : IGuidGen
+    public class SystemGuidGen : IGuidGen
     {
         /// <summary>
         /// Initializes a new instance of the System.Guid structure.

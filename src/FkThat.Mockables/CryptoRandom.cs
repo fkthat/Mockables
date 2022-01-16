@@ -5,14 +5,14 @@ namespace FkThat.Mockables
     /// <summary>
     /// Random number generator.
     /// </summary>
-    public sealed class Random : IRandom, IDisposable
+    public sealed class CryptoRandom : IRandom, IDisposable
     {
         private readonly RandomNumberGenerator _random;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Random"/> class.
+        /// Initializes a new instance of the <see cref="CryptoRandom"/> class.
         /// </summary>
-        public Random()
+        public CryptoRandom()
         {
             _random = RandomNumberGenerator.Create();
         }
@@ -20,7 +20,7 @@ namespace FkThat.Mockables
         /// <summary>
         /// For testing.
         /// </summary>
-        internal Random(RandomNumberGenerator random)
+        internal CryptoRandom(RandomNumberGenerator random)
         {
             _random = random;
         }

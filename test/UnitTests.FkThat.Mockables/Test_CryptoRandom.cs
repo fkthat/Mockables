@@ -2,7 +2,7 @@ using System.Security.Cryptography;
 
 namespace FkThat.Mockables
 {
-    public class Test_Random
+    public class Test_CryptoRandom
     {
         /// <summary>
         /// This test is just for coverage.
@@ -10,7 +10,7 @@ namespace FkThat.Mockables
         [Fact]
         public void Ctor_ShouldBeOk()
         {
-            FluentActions.Invoking(() => new Random()).Should().NotThrow();
+            FluentActions.Invoking(() => new CryptoRandom()).Should().NotThrow();
         }
 
         [Fact]
@@ -24,7 +24,7 @@ namespace FkThat.Mockables
                 buffer[1] = 0x69;
             });
 
-            Random sut = new(rng);
+            CryptoRandom sut = new(rng);
             sut.NextBytes(buffer);
             buffer.Should().Equal(0x42, 0x69);
         }
@@ -33,7 +33,7 @@ namespace FkThat.Mockables
         public void Dispose_ShouldCallRandomNumberGenerator()
         {
             var rng = A.Fake<RandomNumberGenerator>();
-            Random sut = new(rng);
+            CryptoRandom sut = new(rng);
             sut.Dispose();
             A.CallTo(rng).Where(c => c.Method.Name == "Dispose").MustHaveHappened();
         }

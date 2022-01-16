@@ -1,11 +1,11 @@
 namespace FkThat.Mockables
 {
-    public class Test_GuidGen
+    public class Test_SystemGuidGen
     {
         [Fact]
         public void NewGuid_ShouldReturnUniqueValues()
         {
-            GuidGen sut = new();
+            SystemGuidGen sut = new();
             var r = Enumerable.Repeat(0, 42).Select(_ => sut.NewGuid());
             r.Should().OnlyHaveUniqueItems();
         }
