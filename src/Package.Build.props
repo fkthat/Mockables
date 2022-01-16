@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionPrefix>0.0.0</VersionPrefix>
     <Authors>FkThat</Authors>
     <Company>FkThat</Company>
     <Copyright>© FkThat, 2021</Copyright>
@@ -15,12 +15,12 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
-  <PropertyGroup Condition="Exists('$(MSBuildThisFileDirectory)../RELEASE')">
+  <PropertyGroup Condition="Exists('$(MSBuildThisFileDirectory)../ReleaseNotes.txt')">
     <PackageReleaseNotes>@(ReleaseNoteLines, '%0a')</PackageReleaseNotes>
   </PropertyGroup>
-  <Target Condition="Exists('$(MSBuildThisFileDirectory)../RELEASE')"
+  <Target Condition="Exists('$(MSBuildThisFileDirectory)../ReleaseNotes.txt')"
     Name="PreparePackageReleaseNotesFromFile" BeforeTargets="GenerateNuspec">
-    <ReadLinesFromFile File="$(MSBuildThisFileDirectory)../RELEASE" >
+    <ReadLinesFromFile File="$(MSBuildThisFileDirectory)../ReleaseNotes.txt" >
       <Output TaskParameter="Lines" ItemName="ReleaseNoteLines"/>
     </ReadLinesFromFile>
   </Target>
