@@ -27,7 +27,7 @@ jobs:
       - name: Test
         run: dotnet test -c Release --no-build -l trx
       - name: Pack
-        run: dotnet pack -c Release --no-build -p VersionSuffix=CI-${{github.run_number}}
+        run: dotnet pack -c Release --no-build -p 'VersionSuffix=CI-${{github.run_number}}'
       - name: Push
         if: github.ref == 'refs/heads/develop'
         run: dotnet nuget push src/**/bin/Release/*.nuget
