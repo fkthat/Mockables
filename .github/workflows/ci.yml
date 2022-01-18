@@ -12,14 +12,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
     steps:
       - uses: actions/checkout@v2
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v1.9.0
-        with:
-          source_url: "https://nuget.pkg.github.com/fkthat/index.json"
-        env:
-          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: Restore
         run: dotnet restore
       - name: Build
@@ -30,5 +28,5 @@ jobs:
         run: dotnet pack -c Release --no-build -p:VersionSuffix=CI-${{github.run_number}}
       - name: Push
         if: github.ref == 'refs/heads/develop'
-        run: dotnet nuget push src/**/bin/Release/*.nuget
+        run: dotnet nuget push src/**/bin/Release/*.nuget --source GitHub
 
