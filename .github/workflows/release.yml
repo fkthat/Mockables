@@ -19,4 +19,4 @@ jobs:
       - name: Pack
         run: dotnet pack -c Release
       - name: Push
-        run: dotnet nuget push src/**/bin/Release/*.nuget --source GitHub
+        run: dotnet nuget push src/**/bin/Release/*.nupkg --source GitHub
