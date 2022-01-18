@@ -1,4 +1,4 @@
-name: Publish NuGet
+name: Deploy
 
 on:
   release:
