@@ -14,11 +14,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Setup .NET Core SDK
+      - name: Setup .NET SDK
         uses: actions/setup-dotnet@v1.9.0
-      - name: Install dependencies
+        with:
+          source_url: "https://nuget.pkg.github.com/fkthat/index.json"
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: Restore
         run: dotnet restore
       - name: Build
         run: dotnet build -c Release --no-restore
       - name: Test
-        run: dotnet test -c Release --no-build -l 'trx;LogFileName=testlog.trx'
+        run: dotnet test -c Release --no-build -l trx
+      - name: Pack
+        run: dotnet pack -c Release --no-build -p:VersionSuffix=CI-${{github.run_number}}
+      - name: Push
+        if: github.ref == 'refs/heads/develop'
+        run: dotnet nuget push src/**/bin/Release/*.nuget
+

@@ -1,0 +1,21 @@
+name: Publish NuGet
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v1.9.0
+        with:
+          source_url: "https://nuget.pkg.github.com/fkthat/index.json"
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: Pack
+        run: dotnet pack -c Release
+      - name: Push
+        run: dotnet nuget push src/**/bin/Release/*.nuget
