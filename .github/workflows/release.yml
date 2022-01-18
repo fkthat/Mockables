@@ -7,12 +7,15 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
     steps:
       - uses: actions/checkout@v2
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v1.9.0
+      - name: Setup NuGet
+        run: >
+          dotnet nuget add source --username fkthat --password ${{secrets.GITHUB_TOKEN}}
+          --store-password-in-clear-text --name GitHub
+          "https://nuget.pkg.github.com/fkthat/index.json"
       - name: Pack
         run: dotnet pack -c Release
       - name: Push
