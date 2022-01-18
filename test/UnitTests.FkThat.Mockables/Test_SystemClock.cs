@@ -25,11 +25,5 @@ namespace FkThat.Mockables
             var r = sut.UtcNow;
             r.Offset.Should().Be(TimeSpan.Zero);
         }
-
-        [Fact]
-        public void ShouldAlwaysFail()
-        {
-            false.Should().BeTrue();
-        }
     }
 }
