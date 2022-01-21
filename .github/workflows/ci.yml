@@ -21,4 +21,4 @@ jobs:
     uses: fkthat/Actions/build.yml@develop
     with:
       build_configuration: ${{env.BUILD_CONFIGURATION}}
-      version_suffix:  ${{env.VERSION_SUFFIX}}
+      version_suffix: ${{env.VERSION_SUFFIX}}
