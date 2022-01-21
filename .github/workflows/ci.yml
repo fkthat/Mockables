@@ -18,7 +18,7 @@ env:
 jobs:
   build:
     name: Build
-    uses: fkthat/Actions/build.yml@develop
+    uses: fkthat/Actions/.github/workflows/build.yml@develop
     with:
       build_configuration: ${{env.BUILD_CONFIGURATION}}
       version_suffix: ${{env.VERSION_SUFFIX}}
